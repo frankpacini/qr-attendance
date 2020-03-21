@@ -1,4 +1,4 @@
-// import { getCookie, deleteCookie } from "./js/authentication";
+import { getCookie, deleteCookie } from "./js/authentication";
 import router from "./router";
 import { post, get, _delete } from "./requests";
 import store from "./store"; //might be a circular import
