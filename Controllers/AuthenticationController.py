@@ -12,14 +12,24 @@ auth = Blueprint("AuthenticationController", __name__, url_prefix="/api/auth")
 @auth.route("/login", methods=["POST"])
 def login():
     print("Logging in")
-    session = AuthenticationService.authenticate(
-        request.form["email"], request.form["password"])
-    if not session:
-        return Response("Incorrect username or password. Please check your credentials and try again.", status=403)
+    print(request.form)
+    email = request.form['email']
+    password = request.form['password']
+    print(email)
+    print(password)
+    if (email == "Conor" and password == "password"):
+        return Response("Logged in", status = 200)
     else:
-        ret = make_response("Success")
-        ret.set_cookie("SID", str(session.sessionId), expires=session.dateExpires)
-        return ret
+        return Response("Incorrect username or password", status = 403)
+    
+    # session = AuthenticationService.authenticate(
+    #     request.form["email"], request.form["password"])
+    # if not session:
+    #     return Response("Incorrect username or password. Please check your credentials and try again.", status=403)
+    # else:
+    #     ret = make_response("Success")
+    #     ret.set_cookie("SID", str(session.sessionId), expires=session.dateExpires)
+    #     return ret
 
 @auth.route("/logout", methods=["POST"])
 def logout():
