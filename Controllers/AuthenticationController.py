@@ -4,6 +4,8 @@ from Services.AuthenticationService import AuthenticationService
 from Models.User import User
 from flask import current_app as app
 from mongoengine import DoesNotExist
+import yaml
+from yaml import Loader, Dumper
 
 AuthenticationService = AuthenticationService()
 
@@ -17,7 +19,9 @@ def login():
     password = request.form['password']
     print(email)
     print(password)
-    if (email == "Conor" and password == "password"):
+    stream = open('creds.yaml')
+    data = yaml.load(stream, Loader=Loader)
+    if (email == data['DB_USER'] and password == data['DB_PASSWORD']):
         return Response("Logged in", status = 200)
     else:
         return Response("Incorrect username or password", status = 403)
