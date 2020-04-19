@@ -2,8 +2,8 @@
   <v-container fluid>
     <v-row align="center" justify="center">
       <v-col cols="6">
-        <Login>
-        </Login>
+        <Home>
+        </Home>
       </v-col>
     </v-row>
   </v-container>
@@ -11,19 +11,17 @@
 
 <script>
 import { post } from "../requests"
-import Login from '../components/Login'
+import Home from '../components/Home'
 
 export default {
 
     components: {
-      Login
+      Home
     },
     
     data() {
         return {
-            email: "",
-            password: "",
-            visibibilty: false
+            //routes: this.$router.options.routes,
         }
     },
 

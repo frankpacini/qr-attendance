@@ -1,7 +1,8 @@
 import { getCookie, deleteCookie } from "./js/authentication";
 import router from "./router";
-import { post, get, _delete } from "./requests";
-import store from "./store"; //might be a circular import
+import { post//,get, _delete 
+} from "./requests";
+import store from "./store"; // might be a circular import
 import notify from "./utilities/notify";
 import { colors } from "./utilities/branding";
 
@@ -21,6 +22,7 @@ const api = {
   getSessionID(username, password) {
     post("/auth/login", { email: username, password: password })
       .then(() => {
+        console.log("Hi")
         /*
         if (response.data.admin == true) {
           store.commit("setIsAdmin");
@@ -28,7 +30,7 @@ const api = {
         */
         store.commit("setUser", username);
         store.commit("setLoggedInTrue");
-        router.push("/browse");
+        router.push("/home");
         notify("Successfully logged in", colors.green);
       })
       .catch(() => {
@@ -39,13 +41,13 @@ const api = {
     const sessionId = getCookie("SID");
     if (!sessionId) {
       store.commit("setLoggedInFalse");
-      router.push("/");
+      router.push("/login");
       return false;
     }
     return post("/auth/verifySession", { sessionId: sessionId })
       .then(() => {
         store.commit("setLoggedInTrue");
-        router.push("/browse");
+        router.push("/home");
         return true;
       })
       .catch((error) => {
