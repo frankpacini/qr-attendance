@@ -17,6 +17,7 @@
 import QrcodeVue from 'qrcode.vue'
 //import Vue from 'vue';
 let x = Math.ceil(Math.random()*10**16)
+
 const QR = {
   components: {
     QrcodeVue,
@@ -33,6 +34,7 @@ const QR = {
         newQR(){
             x = Math.ceil(Math.random()*10**16);
             this.value = 'http://localhost:8080/'+x 
+            console.log("x1: " + x)
         }
     },
   
