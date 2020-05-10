@@ -25,7 +25,7 @@ const QR = {
 
   data() {
     return {
-      value: 'http://localhost:8080/'+x,
+      value: 'http://localhost:8080/attendance/'+x,
       size: 300,
     };
   },
