@@ -1,6 +1,9 @@
 <template>
   <v-card>
-    <v-card-title >
+    <v-card-title>
+        <v-row justify="center">
+          <span>Message</span>
+        </v-row>
         <v-row justify="center">
             <qrcode-vue :value="value" :size="size" level="H"></qrcode-vue>
         </v-row>
@@ -17,7 +20,8 @@
 import QrcodeVue from 'qrcode.vue'
 //import Vue from 'vue';
 let x = Math.ceil(Math.random()*10**16)
-
+//let i = 1;
+//let title = "Meeting "+i
 const QR = {
   components: {
     QrcodeVue,
@@ -27,6 +31,7 @@ const QR = {
     return {
       value: 'http://localhost:8080/'+x,
       size: 300,
+  //    title: title,
     };
   },
 
@@ -35,6 +40,7 @@ const QR = {
             x = Math.ceil(Math.random()*10**16);
             this.value = 'http://localhost:8080/'+x 
             console.log("x1: " + x)
+    //        title = "Meeting "+ ++i;
         }
     },
   
