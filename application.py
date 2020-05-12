@@ -6,7 +6,7 @@ from mongoengine import connect
 # Instantiate connection to database
 creds = yaml.safe_load(open("creds.yaml", "r"))
 dbHostUri = "mongodb+srv://" + creds["DB_USER"] + ":" + creds["DB_PASSWORD"] + \
-    "@cluster0-ollas.mongodb.net/test?retryWrites=true&w=majority&ssl=true&ssl_cert_reqs=CERT_NONE"
+    "@cluster0-qjnv5.mongodb.net/test?retryWrites=true&w=majority"
 db = connect(host=dbHostUri)
 
 application = Flask(__name__)
@@ -17,15 +17,15 @@ def hello_world():
 
 def importControllers():
     with application.app_context():
-        # import Controllers.AdminController as admin
         import Controllers.AuthenticationController as auth
-        # import Controllers.UploadController as upload
-        # import Controllers.DatasetController as dataset
-
-        #application.register_blueprint(admin.admin)
+        import Controllers.MeetingController as meeting 
+        import Controllers.HomeController as home
+        import Controllers.AttendanceController as attendance
+            
         application.register_blueprint(auth.auth)
-        # application.register_blueprint(upload.upload)
-        # application.register_blueprint(dataset.dataset)
+        application.register_blueprint(meeting.meeting)
+        application.register_blueprint(home.home)
+        application.register_blueprint(attendance.attendance)
 
 importControllers()
 
