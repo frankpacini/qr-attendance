@@ -66,7 +66,9 @@ export default {
             text: state.message,
             state: state
         }
-    },
+    },  
+
+
 
     methods: {
         submit(){
