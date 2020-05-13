@@ -16,7 +16,7 @@ const store = new Vuex.Store({
     show: false,
     color: colors.white,
   },
-  mutations: {
+  mutations: {  
     setLoggedInFalse(state) {
       state.loggedIn = false;
     },

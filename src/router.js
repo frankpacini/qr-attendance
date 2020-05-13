@@ -48,6 +48,11 @@ const router = new Router({
       path: "/meeting/createMeeting",
       name: "createMeeting",
       component: () => import("./views/CreateMeetingPage.vue")
+    },
+    {
+      path: "/meeting/:id",
+      name: "meeting",
+      component: () => import("./views/MeetingPage.vue")
     }
   ]
 });
