@@ -25,6 +25,10 @@ export default {
         }
     },
 
+    computed: {
+      meetingID: this.$route.params.id
+    },
+
     methods: {
         submit(){
             if(this.email != "" && this.password != "") {

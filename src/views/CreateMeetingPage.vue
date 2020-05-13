@@ -63,7 +63,7 @@ export default {
             api.createMeeting(this.name).then(res => {
                     console.log("Created Meeting")
                     var meetingID = res.data["meetingID"]
-                    router.push("meeting/" + meetingID)
+                    router.push(meetingID)
                 })
 
             
