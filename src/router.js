@@ -43,6 +43,11 @@ const router = new Router({
       path: "/attendance/:id",
       name: "attendance",
       component: () => import("./views/AttendancePage.vue"),
+    },
+    {
+      path: "/meeting/createMeeting",
+      name: "createMeeting",
+      component: () => import("./views/CreateMeetingPage.vue")
     }
   ]
 });

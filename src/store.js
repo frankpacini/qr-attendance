@@ -11,7 +11,6 @@ const store = new Vuex.Store({
     
     loggedIn: "unset",
     
-    user: "", //the email address of the user,
 
     message: "",
     show: false,

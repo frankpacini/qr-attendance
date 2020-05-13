@@ -7,6 +7,9 @@ import notify from "./utilities/notify";
 import { colors } from "./utilities/branding";
 
 const api = {
+  createMeeting(name){
+    return post("/meeting/createMeeting", {name: name});
+  },
   logout() {
     post("/auth/logout", { sessionId: getCookie("SID") })
       .then(() => {
