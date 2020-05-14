@@ -31,5 +31,13 @@ def getMeeting(meetingID):
     print("Id: " + str(meeting.meetingID))
     return Response({"meetingID": str(meeting.meetingID), "name" : meeting.name, "active" : meeting.active}, status=200)
 
-    
+@meeting.route("/<meetingID>", methods=["POST"])
+def closeMeeting(meetingID):
+    print("Hello2")
+    active = MeetingService.closeMeeting(meetingID)
+    if(not active):
+        return Response({"active" : active}, status=200)
+    else:
+        return Response("Meeting not found", status = 400)
+        
     

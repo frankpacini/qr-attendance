@@ -18,4 +18,12 @@ class MeetingService:
         #checks if there is a meeting in the database with the meeting id, if there is then it returns the 
         print("ID: " + str(id))
         meeting = Meeting.objects(meetingID=id).first() 
-        return meeting  
+        return meeting 
+    
+    def closeMeeting(self, id):
+        active = True
+        for meeting in Meeting.objects(meetingID = id):
+            active = False
+            meeting.active = False
+            meeting.save()
+        return active
