@@ -38,6 +38,7 @@ const QR = {
       id: "",
       validMeeting: 0, //0 means loading, 1 means valid 2 means not valid
       meetingName: "",
+      meetingActive: true, //if meeting is still open or not
     };
   },
 
@@ -48,6 +49,10 @@ const QR = {
     api.checkMeeting(this.id).then(res => {
       console.log("Valid meeting id" + res)
       this.validMeeting = 1
+      console.log(res)
+      this.meetingName = res.data.name
+      this.id = res.data.meetingID
+      this.meetingActive = res.data.active
     }).catch(err => {
       this.validMeeting = 2
       console.log("Not a valid meeting" + err)
