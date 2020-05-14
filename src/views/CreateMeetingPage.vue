@@ -59,7 +59,6 @@ export default {
         submit(){
             console.log("This runs")
             //post function that creates a meeting
-            console.log(api.createMeeting(this.name))
             api.createMeeting(this.name).then(res => {
                     console.log("Created Meeting")
                     var meetingID = res.data["meetingID"]

@@ -2,8 +2,8 @@
   <v-container fluid>
     <v-row align="center" justify="center">
       <v-col cols="6">
-        <Home>
-        </Home>
+        <QR>
+        </QR>
       </v-col>
     </v-row>
   </v-container>
@@ -11,12 +11,12 @@
 
 <script>
 import { post } from "../requests"
-import Home from '../components/Home'
+import QR from '../components/QR'
 
 export default {
 
     components: {
-      Home
+      QR
     },
     
     data() {
@@ -25,9 +25,9 @@ export default {
         }
     },
 
-    computed: {
+  /*  computed: {
       meetingID: this.$route.params.id
-    },
+    }, */
 
     methods: {
         submit(){
