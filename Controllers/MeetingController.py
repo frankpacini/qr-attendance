@@ -29,8 +29,7 @@ def getMeeting(meetingID):
     
     print(meeting)
     print("Id: " + str(meeting.meetingID))
-    return Response(meeting, status=200)
-   # return {"meetingID": meeting.meetingID, "name" : meeting.name, "active" : meeting.active}
+    return Response({"meetingID": str(meeting.meetingID), "name" : meeting.name, "active" : meeting.active}, status=200)
 
     
     
