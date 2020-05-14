@@ -1,8 +1,8 @@
 from mongoengine import *
-from uuid import uuid4
+import uuid
 
 class Attendee(DynamicDocument):
     name = StringField(required=True)
-    attendeeID = UUIDField(binary=False, required=True, default=uuid4())
+    attendeeID = UUIDField(binary=False, required=True, default=uuid.uuid4, unique=True)
 
         
