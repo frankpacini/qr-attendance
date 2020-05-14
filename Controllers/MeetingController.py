@@ -23,4 +23,14 @@ def createMeeting():
 
 @meeting.route("/<meetingID>", methods=["GET"])
 def getMeeting(meetingID):
-    return "Meeting"
+    meeting = MeetingService.getMeeting(meetingID)
+    if(meeting == None):
+        return Response("No meeting", status=400)
+    
+    print(meeting)
+    print("Id: " + str(meeting.meetingID))
+    return Response(meeting, status=200)
+   # return {"meetingID": meeting.meetingID, "name" : meeting.name, "active" : meeting.active}
+
+    
+    

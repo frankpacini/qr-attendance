@@ -12,4 +12,10 @@ class MeetingService:
             name=name
         )
         meeting.save()
-        return meeting.meetingId
+        return meeting.meetingID
+
+    def getMeeting(self, id):
+        #checks if there is a meeting in the database with the meeting id, if there is then it returns the 
+        print("ID: " + str(id))
+        meeting = Meeting.objects(meetingID=id).first() 
+        return meeting  

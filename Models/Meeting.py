@@ -4,6 +4,7 @@ from uuid import uuid4
 
 class Meeting(DynamicDocument):
     name = StringField(required=True)
-    meetingId = UUIDField(binary=False, required=True, default=uuid4())
+    meetingID = UUIDField(binary=False, required=True, default=uuid4())
     attendees = ListField(ReferenceField(Attendee))
+    active = BooleanField(required=True,default=True)
     
