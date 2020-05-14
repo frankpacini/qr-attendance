@@ -38,17 +38,40 @@
 </template>
 
 <script>
+
+import api from "../api.js";
+
+
 export default {
-    
+
+    props: {
+        userID: String
+    },
+
     data() {
         return {
             name: "",
+            meetingID: "",
         }
+    },
+
+    created(){
+        this.meetingID = this.$route.params.id
     },
 
     methods: {
         submit() {
-            this.$emit('input', this.name);
+            var userIDresult;
+            api.setName(this.meetingID, this.name, this.userID).then(res => {
+                console.log("Signed in" + res)
+                userIDresult = res.data.userID
+                console.log(res)
+                this.$emit('input', this.name);
+                this.$emit('createdAttendee', userIDresult)
+                }).catch(err => {
+                console.log(err)
+            })
+            
         }
     }
 }

@@ -1,26 +1,31 @@
 <template>
-<v-container fluid>
-    <v-container style="width:50%" v-if="this.name == ''">
-        <Name  @input="(newName) => {name = newName}"  />
-    </v-container>
+    <v-container fluid>
+        <v-container  v-if="this.valid == 1">
+            <v-container style="width:50%" v-if="this.name == ''">
+                <Name v-bind:userID="this.userID" @input="(newName) => {name = newName}" @createdAttendee="(newUserID) => {userID = newUserID}"  />
+            </v-container>
 
-    <v-container v-if="this.name != ''">
-        <v-card>
-            <v-card-title>
-                Congratulations. You are signed in as {{ this.name }}. 
-            </v-card-title>
-            <v-card-subtitle @click="reset">
-                <v-btn>  Not You? </v-btn>
-            </v-card-subtitle>
-        </v-card>
+            <v-container v-if="this.name != ''">
+                <v-card>
+                    <v-card-title>
+                        Congratulations. You are signed in as {{ this.name }}. 
+                    </v-card-title>
+                    <v-card-subtitle @click="reset">
+                        <v-btn>  Not You? </v-btn>
+                    </v-card-subtitle>
+                </v-card>
+            </v-container>
+        </v-container>
+        <v-container v-if="this.valid == 2">
+            <h1>Not a valid attendance link</h1>
+        </v-container>
     </v-container>
-
-</v-container>
 </template>
 
 <script>
 
 import Name from '../components/Name.vue'
+import api from "../api.js";
 
 export default {
 
@@ -29,11 +34,24 @@ export default {
     },
     
     created() {
+        this.id = this.$route.params.id
+        console.log("Created")
+         api.checkMeeting(this.id).then(res => {
+        console.log("Valid meeting id" + res)
+        this.valid = 1
+        console.log(res)
+        }).catch(err => {
+        this.valid = 2
+        console.log("Not a valid meeting" + err)
+        })
     },
 
     data() {
         return {
-            name: ""
+            name: "",
+            id: "",
+            userID: "",
+            valid: 0 //0 is loading, 1 is valid, 2 is invalid
         }
     },
 

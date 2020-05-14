@@ -8,6 +8,9 @@ import notify from "./utilities/notify";
 import { colors } from "./utilities/branding";
 
 const api = {
+  setName(meetingID, name, userID){
+    return post("/attendance/" + meetingID, {name: name, userID: userID})
+  },
   createMeeting(name){
     console.log("This was called")
     return post("/meeting/createMeeting", {name: name});

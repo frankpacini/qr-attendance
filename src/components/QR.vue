@@ -24,7 +24,6 @@
 import QrcodeVue from 'qrcode.vue'
 import api from "../api.js";
 //import Vue from 'vue';
-let x = Math.ceil(Math.random()*10**16)
 
 const QR = {
   components: {
@@ -33,13 +32,18 @@ const QR = {
 
   data() {
     return {
-      value: 'http://localhost:8080/attendance/'+x,
       size: 300,
       id: "",
       validMeeting: 0, //0 means loading, 1 means valid 2 means not valid
       meetingName: "",
       meetingActive: true, //if meeting is still open or not
     };
+  },
+
+  computed: {
+    value: function () {
+      return 'http://localhost:8080/attendance/' + this.id
+    }
   },
 
   created() {
@@ -62,9 +66,6 @@ const QR = {
 
   methods: {
         newQR(){
-            x = Math.ceil(Math.random()*10**16);
-            this.value = 'http://localhost:8080/'+x 
-            console.log("x1: " + x)
         }
     },
   
