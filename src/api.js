@@ -1,14 +1,22 @@
 import { getCookie, deleteCookie } from "./js/authentication";
 import router from "./router";
-import { post//,get, _delete 
+import { post,//,get, _delete 
+get
 } from "./requests";
 import store from "./store"; // might be a circular import
 import notify from "./utilities/notify";
 import { colors } from "./utilities/branding";
 
 const api = {
+  setName(meetingID, name, userID){
+    return post("/attendance/" + meetingID, {name: name, userID: userID})
+  },
   createMeeting(name){
+    console.log("This was called")
     return post("/meeting/createMeeting", {name: name});
+  },
+  checkMeeting(meetingID){
+    return get("/meeting/" + meetingID);
   },
   logout() {
     post("/auth/logout", { sessionId: getCookie("SID") })
