@@ -11,12 +11,15 @@ const api = {
   setName(meetingID, name, userID){
     return post("/attendance/" + meetingID, {name: name, userID: userID})
   },
-  createMeeting(name){
+  createMeeting(name) {
     console.log("This was called")
     return post("/meeting/createMeeting", {name: name});
   },
-  checkMeeting(meetingID){
+  checkMeeting(meetingID) {
     return get("/meeting/" + meetingID);
+  },
+  closeMeeting(meetingID) {
+    return post("/meeting/" + meetingID, false);
   },
   logout() {
     post("/auth/logout", { sessionId: getCookie("SID") })

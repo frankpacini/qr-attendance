@@ -22,25 +22,12 @@
               <v-btn tile color="success" v-on:click="submit" width="95%" type="submit">Submit</v-btn>
               </v-row>
           </v-card-actions>
-            <div class="text-center ma-2">
-            <v-snackbar v-model="snackbar">
-                {{ text }}
-            <v-btn
-                color= state.color
-                text
-                on:click="closeSnackbar"
-            >
-            Close
-            </v-btn>
-            </v-snackbar>
-            </div>
         </v-card>
 </template>
 
 <script>
 
 import api from "../api.js";
-
 
 export default {
 

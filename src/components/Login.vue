@@ -31,27 +31,13 @@
               <v-btn tile color="success" v-on:click="submit" width="95%" type="submit">Login</v-btn>
               </v-row>
           </v-card-actions>
-            <div class="text-center ma-2">
-            <v-snackbar v-model="snackbar">
-                {{ text }}
-            <v-btn
-                color= state.color
-                text
-                on:click="closeSnackbar"
-            >
-            Close
-            </v-btn>
-            </v-snackbar>
-            </div>
         </v-card>
 </template>
 
 <script>
 import api from "../api.js";
-import state from "../store.js";
-import { colors } from "../utilities/branding";
 // import { post } from "../requests"
-import store from "../store.js";
+//import store from "../store.js";
 export default {
     components: {
       //state,
@@ -62,9 +48,6 @@ export default {
             email: "",
             password: "",
             visibility: false,
-            snackbar: state.show,
-            text: state.message,
-            state: state
         }
     },  
 
@@ -88,9 +71,6 @@ export default {
                 // })
             }
         },
-        closeSnackbar() {
-            store.commit("setSnackbar", { message: "", show: false, color: colors.white})
-        }
     },
 }
 </script>

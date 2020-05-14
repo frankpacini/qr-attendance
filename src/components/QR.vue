@@ -1,18 +1,28 @@
 <template>
   <v-container>
     <v-container v-if="this.validMeeting == 1">
-      <v-card>
-        <v-card-title >
+      <v-container v-if="this.meetingActive">
+        <v-card>
+          <v-card-title >
+              <v-row justify="center">
+                      <h2 style="color:#1976d2">{{this.meetingName}}</h2>
+                  </v-row>
+          </v-card-title>
+          <v-card-text>
             <v-row justify="center">
-                <qrcode-vue :value="value" :size="size" level="H"></qrcode-vue>
+                  <qrcode-vue :value="value" :size="size" level="H"></qrcode-vue>
+              </v-row>
+          </v-card-text>
+          <v-card-actions>
+            <v-row justify="center">
+            <v-btn tile color="blue" v-on:click="close" width="95%" type="submit">Close Meeting</v-btn>
             </v-row>
-        </v-card-title>
-        <v-card-actions>
-          <v-row justify="center">
-          <v-btn tile color="blue" v-on:click="newQR" width="95%" type="submit">Make New QR</v-btn>
-          </v-row>
-        </v-card-actions>
-      </v-card>
+          </v-card-actions>
+        </v-card>
+      </v-container>
+      <v-container v-else>
+        <h1>Meeting no longer active</h1>
+      </v-container>
     </v-container>
     <v-container v-if="this.validMeeting == 2">
       <h1>Not a meeting</h1>
@@ -65,7 +75,15 @@ const QR = {
 
 
   methods: {
-        newQR(){
+        close() {
+          console.log("Hello1")
+          api.closeMeeting(this.id).then(res => {
+            this.meetingActive = res.data.active
+            console.log("Hello2")
+            //this.$route.go(-2)
+          }).catch(err => {
+            console.log("Close failed " + err)
+          })
         }
     },
   
