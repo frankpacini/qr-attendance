@@ -16,8 +16,11 @@ class AttendaceService:
 
     def attendMeeting(self, attendee, meetingID):
         meeting = Meeting.objects(meetingID=meetingID).first()
-        meeting.attendees.append(attendee)
-        meeting.save()
+        if(meeting.active):
+            meeting.attendees.append(attendee)
+            meeting.save()
+            attendee.meetings.append(meeting)
+            attendee.save()
 
     def updateName(self, name, userID):
         print("userID " + str(userID))
