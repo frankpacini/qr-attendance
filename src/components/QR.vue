@@ -23,6 +23,18 @@
       <v-container v-else>
         <h1>Meeting no longer active</h1>
       </v-container>
+      <v-container v-if="this.names.length != 0">
+        <v-card>
+          <v-card-title class="justify-center">
+            Attendees
+          </v-card-title>
+          <v-card-text class="justify-center">
+            <v-row justify="center" v-for="name in names" :key="name">
+              {{ name }}
+            </v-row>
+          </v-card-text>
+        </v-card>
+      </v-container>
     </v-container>
     <v-container v-if="this.validMeeting == 2">
       <h1>Not a meeting</h1>
@@ -47,6 +59,7 @@ const QR = {
       validMeeting: 0, //0 means loading, 1 means valid 2 means not valid
       meetingName: "",
       meetingActive: true, //if meeting is still open or not
+      names: [],
     };
   },
 
@@ -73,8 +86,21 @@ const QR = {
     })
   },
 
+  mounted: function () {
+      window.setInterval(() => {
+        this.getNames()
+      }, 3000)
+    },
+
 
   methods: {
+        getNames() {
+          console.log("This called")
+          api.getNames(this.id).then(res => {
+            console.log(res.data.names)
+            this.names = res.data.names
+          })
+        },
         close() {
           console.log("Hello1")
           api.closeMeeting(this.id).then(res => {
