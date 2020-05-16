@@ -19,6 +19,9 @@
         <v-container v-if="this.valid == 2">
             <h1>Not a valid attendance link</h1>
         </v-container>
+        <v-container v-if="this.valid == 3">
+            <h1>Link is no longer active</h1>
+        </v-container>
     </v-container>
 </template>
 
@@ -26,6 +29,7 @@
 
 import Name from '../components/Name.vue'
 import api from "../api.js";
+import {getCookie, deleteCookie} from "../js/authentication.js";
 
 export default {
 
@@ -35,10 +39,22 @@ export default {
     
     created() {
         this.id = this.$route.params.id
-        console.log("Created")
-         api.checkMeeting(this.id).then(res => {
+        console.log("Cookie: " + getCookie("name") + " " + getCookie("userID"))
+        api.checkMeeting(this.id).then(res => {
         console.log("Valid meeting id" + res)
-        this.valid = 1
+        if (res.data["active"]) {
+            this.valid = 1
+            console.log("Active meeting")
+            if(this.name != "") {
+                api.setName(this.id, this.name, this.userID).catch(err => {
+                    console.log(err)
+                })
+            }
+        }
+        else {
+            this.valid = 3
+            console.log("Inactive meeting")
+        }
         console.log(res)
         }).catch(err => {
         this.valid = 2
@@ -48,9 +64,9 @@ export default {
 
     data() {
         return {
-            name: "",
+            name: getCookie("name") ? getCookie("name") : "",
             id: "",
-            userID: "",
+            userID: getCookie("userID") ? getCookie("userID") : "",
             valid: 0 //0 is loading, 1 is valid, 2 is invalid
         }
     },
@@ -60,6 +76,7 @@ export default {
         reset(){
             console.log("This was pressed")
             this.name = ""
+            deleteCookie("name")
         }
     }
 }

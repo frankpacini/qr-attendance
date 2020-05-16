@@ -1,8 +1,8 @@
 <template>
-        <v-card>
+        <v-card style="color:#a8dadc">
             <v-card-title >
                 <v-row justify="center">
-                    <h2 style="color:#1976d2">Login</h2>
+                    <h2 style="color:#1d3557">Login</h2>
                 </v-row>
             </v-card-title>
           <v-card-text>
@@ -28,7 +28,7 @@
           </v-card-text>
           <v-card-actions>
               <v-row justify="center">
-              <v-btn tile color="success" v-on:click="submit" width="95%" type="submit">Login</v-btn>
+              <v-btn tile color="#457b9d" v-on:click="submit" width="95%" type="submit">Login</v-btn>
               </v-row>
           </v-card-actions>
         </v-card>

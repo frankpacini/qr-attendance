@@ -15,7 +15,7 @@
           </v-card-text>
           <v-card-actions>
             <v-row justify="center">
-            <v-btn tile color="blue" v-on:click="close" width="95%" type="submit">Close Meeting</v-btn>
+            <v-btn tile color="#457b9d" v-on:click="close" width="95%" type="submit">Close Meeting</v-btn>
             </v-row>
           </v-card-actions>
         </v-card>
@@ -80,7 +80,7 @@ const QR = {
           api.closeMeeting(this.id).then(res => {
             this.meetingActive = res.data.active
             console.log("Hello2")
-            //this.$route.go(-2)
+            this.$router.go(-2)
           }).catch(err => {
             console.log("Close failed " + err)
           })

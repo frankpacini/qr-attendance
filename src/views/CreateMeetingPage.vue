@@ -3,7 +3,7 @@
         <v-card>
             <v-card-title >
                 <v-row justify="center">
-                    <h2 style="color:#1976d2">Enter Name of Meeting</h2>
+                    <h2 style="color:#1d3557">Enter Name of Meeting</h2>
                 </v-row>
             </v-card-title>
           <v-card-text>
@@ -20,7 +20,7 @@
           </v-card-text>
           <v-card-actions>
               <v-row justify="center">
-              <v-btn tile color="success" v-on:click="submit" width="95%" type="submit">Submit</v-btn>
+              <v-btn tile color="#e63946" v-on:click="submit" width="95%" type="submit">Submit</v-btn>
               </v-row>
           </v-card-actions>
         </v-card>
