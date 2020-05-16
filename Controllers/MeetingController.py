@@ -20,6 +20,14 @@ def createMeeting():
     return {"meetingID": str(meetingID)}    
 
 
+@meeting.route("/names/<meetingID>", methods=["GET"])
+def getNames(meetingID):
+    meeting = MeetingService.getMeeting(meetingID)
+    attendees = meeting.attendees 
+    names = []
+    for attendee in attendees:
+        names.append(str(attendee.name))
+    return Response({"names": names})
 
 @meeting.route("/<meetingID>", methods=["GET"])
 def getMeeting(meetingID):
