@@ -3,7 +3,7 @@ from Models.Attendee import Attendee
 from Models.Meeting import Meeting
 from application import db
 
-class AttendaceService:
+class AttendanceService:
     def __init__(self):
         return
 
@@ -16,7 +16,7 @@ class AttendaceService:
 
     def attendMeeting(self, attendee, meetingID):
         meeting = Meeting.objects(meetingID=meetingID).first()
-        if(meeting.active):
+        if(meeting.active and not meeting in attendee.meetings):
             meeting.attendees.append(attendee)
             meeting.save()
             attendee.meetings.append(meeting)

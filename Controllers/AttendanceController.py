@@ -2,9 +2,9 @@ from flask import Blueprint, request, make_response
 from Response import Response
 from Models.Attendee import Attendee
 from Models.Meeting import Meeting
-from Services.AttendanceService import AttendaceService
+from Services.AttendanceService import AttendanceService
 
-AttendaceService = AttendaceService()
+AttendanceService = AttendanceService()
 
 
 attendance = Blueprint("AttendanceEndpoints", __name__, url_prefix="/api/attendance")
@@ -23,10 +23,11 @@ def recordAttendance(attendance_id):
     
     #if there is no preset userID then create a new Attendee
     if(userID == ""):
-        attendee = AttendaceService.createAttendee(name)
-        AttendaceService.attendMeeting(attendee, attendance_id)
+        attendee = AttendanceService.createAttendee(name)
     else:
         #update the name of the person with the userID
-        attendee = AttendaceService.updateName(name, userID)
+        attendee = AttendanceService.updateName(name, userID)
+        
+    AttendanceService.attendMeeting(attendee, attendance_id)
     
     return Response({"userID": str(attendee.attendeeID)}, status=200)
