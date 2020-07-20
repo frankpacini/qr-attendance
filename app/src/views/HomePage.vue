@@ -19,6 +19,7 @@
                     <v-card
                         color="#457b9d"
                         dark
+                        @click="viewPastMeetings"
                     >
                         <v-card-title class="headline">View Past Meetings</v-card-title>
                     </v-card>
@@ -34,6 +35,9 @@ export default {
     methods: {
         createNewMeeting(){
             this.$router.push("/meeting/createMeeting")
+        },
+        viewPastMeetings() {
+            this.$router.push("/meeting/pastMeetings")
         }
     }
 }

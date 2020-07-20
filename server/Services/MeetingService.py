@@ -1,7 +1,7 @@
 from uuid import uuid4
 from Models.Meeting import Meeting
 from application import db
-
+import datetime
 class MeetingService:
     def __init__(self):
         return
@@ -9,7 +9,8 @@ class MeetingService:
 
     def createMeeting(self, name):
         meeting = Meeting(
-            name=name
+            name=name,
+            date=datetime.datetime.utcnow()
         )
         meeting.save()
         return meeting.meetingID
@@ -19,6 +20,9 @@ class MeetingService:
         print("ID: " + str(id))
         meeting = Meeting.objects(meetingID=id).first() 
         return meeting 
+
+    def getAllMeetings(self):
+        return Meeting.objects
     
     def closeMeeting(self, id):
         active = True

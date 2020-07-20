@@ -21,6 +21,9 @@ const api = {
   checkMeeting(meetingID) {
     return get("/meeting/" + meetingID);
   },
+  getAllMeetings() {
+    return get("/meeting/all");
+  },
   closeMeeting(meetingID) {
     return post("/meeting/" + meetingID, false);
   },

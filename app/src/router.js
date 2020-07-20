@@ -50,6 +50,11 @@ const router = new Router({
       component: () => import("./views/CreateMeetingPage.vue")
     },
     {
+      path: "/meeting/pastMeetings",
+      name: "pastMeeting",
+      component: () => import("./views/PastMeetingPage.vue")
+    },
+    {
       path: "/meeting/:id",
       name: "meeting",
       component: () => import("./views/MeetingPage.vue")

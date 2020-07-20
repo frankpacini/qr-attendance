@@ -6,5 +6,6 @@ class Meeting(DynamicDocument):
     name = StringField(required=True)
     meetingID = UUIDField(binary=False, required=True, default=uuid.uuid4, unique=True)
     attendees = ListField(ReferenceField(Attendee))
+    date = DateTimeField(required=True)
     active = BooleanField(required=True,default=True)
     
